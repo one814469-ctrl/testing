@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ExternalLink, Loader2 } from 'lucide-react';
-import { supabase, UserStory, Feature, Task } from './lib/supabase';
+import { supabase, UserStory, Feature, Task, PROJECT_ID } from './lib/supabase';
 import { UserStoryItem } from './components/UserStoryItem';
 
 function App() {
@@ -20,9 +20,9 @@ function App() {
       setError(null);
 
       const [userStoriesResult, featuresResult, tasksResult] = await Promise.all([
-        supabase.from('user_stories').select('*').order('order_index'),
-        supabase.from('features').select('*').order('order_index'),
-        supabase.from('tasks').select('*').order('order_index'),
+        supabase.from('user_stories').select('*').eq('project_id', PROJECT_ID).order('order_index'),
+        supabase.from('features').select('*').eq('project_id', PROJECT_ID).order('order_index'),
+        supabase.from('tasks').select('*').eq('project_id', PROJECT_ID).order('order_index'),
       ]);
 
       if (userStoriesResult.error) throw userStoriesResult.error;

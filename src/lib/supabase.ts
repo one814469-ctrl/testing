@@ -5,8 +5,11 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+export const PROJECT_ID = '00000000-0000-0000-0000-000000000001';
+
 export interface UserStory {
   id: string;
+  project_id: string;
   title: string;
   description: string;
   order_index: number;
@@ -16,6 +19,7 @@ export interface UserStory {
 
 export interface Feature {
   id: string;
+  project_id: string;
   user_story_id: string;
   title: string;
   description: string;
@@ -26,6 +30,7 @@ export interface Feature {
 
 export interface Task {
   id: string;
+  project_id: string;
   feature_id: string;
   title: string;
   description: string;
